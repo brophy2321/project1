@@ -2,7 +2,7 @@ console.log("hi");
 
 
 
-function (){
+function sportsQuiz(){
 var questions = [{
 question: "Which team has won the most Superbowls?",
 choices: ["Pittsburgh Steelers", "Green Bay Packers", "Cleveland Browns", "Dallas Cowboys" ],
