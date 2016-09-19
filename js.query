@@ -1,0 +1,27 @@
+console.log("hi");
+
+
+
+function (){
+var questions = [{
+question: "Which team has won the most Superbowls?",
+choices: ["Pittsburgh Steelers", "Green Bay Packers", "Cleveland Browns", "Dallas Cowboys" ],
+correctAnswer: "Pittsburgh Steelers"
+}, {
+question: "Which hockey player is the all time points leader in the NHL?",
+choices: ["Wayne Gretzky", "Charlie Conway", "Mario Lemieux", "Georges Laraque"]
+correctAnswer: "Wayne Gretzky"
+}, {
+question: "What baseball player holds the all time home run record?",
+choices: ["Babe Ruth", "Barry Bonds", "Ichiro Suzuki", "Jose Canseco"]
+correctAnswer: "Barry Bonds"
+}, {
+question: "What NBA player holds the record for most three pointers in a season?",
+choices: ["Reggie Miller", "Jesus Shuttlesworth", "Steph Curry", "Michael Jordan"]
+correctAnswer: "Steph Curry"
+}, {
+question: "Which male boxer holds the record for longest heavyweight title reign?",
+choices: ["Apollo Creed", "Mike Tyson", "Muhammad Ali", "Joe Louis"]
+correctAnswer: "Joe Louis"
+}
+}

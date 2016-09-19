@@ -4,26 +4,11 @@ body{
 h1{
   color: yellow;
   position: absolute;
-  display: flex;
-  align-items: center;
+  text-align: center;
   font-family: 'Indie Flower', cursive;
   font-size: 70px;
   font-weight: bold;
   border: 5px solid yellow;
 
-
-}
-div {
-  height: 75px;
-  width: 85px;
-  border: solid yellow;
-  position: relative;
-  color: yellow;
-  margin: auto;
-  padding: 10px 10px 10px 10px;
-  font-weight: bold;
-
-  display: flex;
-  justify-content: center;
 
 }
