@@ -41,4 +41,11 @@ $('#next').on('click', function(e){
   }
 choose();
 
-})
+if (isNaN(selections[questionNum])) {
+  alert('Please select Answer');
+} else {
+  questionNum++;
+  displayNext();
+}
+
+});

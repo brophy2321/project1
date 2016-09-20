@@ -1,5 +1,6 @@
 body{
   background: blue;
+  font-family: georgia;
 }
 h1{
   color: yellow;
@@ -9,6 +10,13 @@ h1{
   font-size: 70px;
   font-weight: bold;
   border: 5px solid yellow;
+}
+#container{
+  width: 60%;
+  margin: auto;
+  padding: 0 30px 45px 10px;
+  border: 5px solid yellow;
+  border-radius: 10px;
 }
 .button {
   margin: 0 3px 0 3px;
@@ -23,4 +31,19 @@ h1{
   color: blue;
   float: right;
 
+}
+
+.button.active {
+  background-color: white;
+  color: blue
+}
+
+button{
+  position: relative;
+  float: right;
+}
+
+.button a {
+  color: black;
+  text-decoration: underline;
 }
