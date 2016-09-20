@@ -1,7 +1,7 @@
 console.log("hi");
 
 
-
+//write out questions to be asked
 function sportsQuiz(){
 var questions = [{
 question: "Which team has won the most Superbowls?",
@@ -24,4 +24,21 @@ question: "Which male boxer holds the record for longest heavyweight title reign
 choices: ["Apollo Creed", "Mike Tyson", "Muhammad Ali", "Joe Louis"]
 correctAnswer: "Joe Louis"
 }
-}
+}];
+
+var questionNum = 0;
+var selections = [];
+var quiz = $('#sportsQuiz');
+
+displayNext();
+
+
+$('#next').on('click', function(e){
+  e.preventDefault();
+
+  if(quiz.is(':animated')) {
+    return false;
+  }
+choose();
+
+})
