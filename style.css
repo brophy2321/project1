@@ -1,22 +1,23 @@
 body{
-  background: blue;
+
+
   font-family: georgia;
 }
 h1{
-  color: yellow;
-  position: absolute;
+  /*color: yellow;
+  position: absolute;*/
   text-align: center;
-  font-family: 'Indie Flower', cursive;
+  /*font-family: 'Indie Flower', cursive;
   font-size: 70px;
   font-weight: bold;
-  border: 5px solid yellow;
+  border: 5px solid yellow;*/
 }
-#container{
-  width: 60%;
-  margin: auto;
-  padding: 0 30px 45px 10px;
-  border: 5px solid yellow;
-  border-radius: 10px;
+#title {
+  text-decoration: none;
+}
+#sportsquiz {
+  text-indent: 10px;
+  display: none;
 }
 .button {
   margin: 0 3px 0 3px;
@@ -46,4 +47,23 @@ button{
 .button a {
   color: black;
   text-decoration: underline;
+}
+#container{
+  width: 60%;
+  margin: auto;
+  padding: 0 30px 45px 10px;
+  border: 5px solid yellow;
+  border-radius: 10px;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#previous {
+  display: none;
+}
+#start {
+  display: none;
+  width: 100px
 }

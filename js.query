@@ -2,50 +2,166 @@ console.log("hi");
 
 
 //write out questions to be asked
-function sportsQuiz(){
-var questions = [{
-question: "Which team has won the most Superbowls?",
-choices: ["Pittsburgh Steelers", "Green Bay Packers", "Cleveland Browns", "Dallas Cowboys" ],
-correctAnswer: "Pittsburgh Steelers"
-}, {
-question: "Which hockey player is the all time points leader in the NHL?",
-choices: ["Wayne Gretzky", "Charlie Conway", "Mario Lemieux", "Georges Laraque"]
-correctAnswer: "Wayne Gretzky"
-}, {
-question: "What baseball player holds the all time home run record?",
-choices: ["Babe Ruth", "Barry Bonds", "Ichiro Suzuki", "Jose Canseco"]
-correctAnswer: "Barry Bonds"
-}, {
-question: "What NBA player holds the record for most three pointers in a season?",
-choices: ["Reggie Miller", "Jesus Shuttlesworth", "Steph Curry", "Michael Jordan"]
-correctAnswer: "Steph Curry"
-}, {
-question: "Which male boxer holds the record for longest heavyweight title reign?",
-choices: ["Apollo Creed", "Mike Tyson", "Muhammad Ali", "Joe Louis"]
-correctAnswer: "Joe Louis"
-}
-}];
-
-var questionNum = 0;
-var selections = [];
-var quiz = $('#sportsQuiz');
-
-displayNext();
-
-
-$('#next').on('click', function(e){
-  e.preventDefault();
-
-  if(quiz.is(':animated')) {
-    return false;
-  }
-choose();
-
-if (isNaN(selections[questionNum])) {
-  alert('Please select Answer');
-} else {
-  questionNum++;
+(function sportsQuiz(){
+  var questions = [{
+    question: "Which team has won the most Superbowls?",
+    choices: ["Pittsburgh Steelers", "Green Bay Packers", "Cleveland Browns", "Dallas Cowboys" ],
+    correctAnswer: "Pittsburgh Steelers"
+  }, {
+    question: "Which hockey player is the all time points leader in the NHL?",
+    choices: ["Wayne Gretzky", "Charlie Conway", "Mario Lemieux", "Georges Laraque"],
+    correctAnswer: "Wayne Gretzky"
+  }, {
+    question: "What baseball player holds the all time home run record?",
+    choices: ["Babe Ruth", "Barry Bonds", "Ichiro Suzuki", "Jose Canseco"],
+    correctAnswer: "Barry Bonds"
+  }, {
+    question: "What NBA player holds the record for most three pointers in a season?",
+    choices: ["Reggie Miller", "Jesus Shuttlesworth", "Steph Curry", "Michael Jordan"],
+    correctAnswer: "Steph Curry"
+  }, {
+    question: "Which male boxer holds the record for longest heavyweight title reign?",
+    choices: ["Apollo Creed", "Mike Tyson", "Muhammad Ali", "Joe Louis"],
+    correctAnswer: "Joe Louis"
+  }];
+  //tracking question number, array of users choices,
+  var questionCounter = 0;
+  var selections = [];
+  var quiz = $('#sportsQuiz');
+  //display 1st ?
   displayNext();
-}
 
-});
+  //next handler
+  $('#next').on('click', function(e){
+    e.preventDefault();
+//suspending click listener during fade 
+    if(quiz.is(':animated')) {
+      return false;
+    }
+    choose();
+    //must have user selection
+    if (isNaN(selections[questionCounter])) {
+      alert('Please select Answer');
+    } else {
+      questionCounter++;
+      displayNext();
+    }
+
+  });
+  // handler for previous
+  $('#previous').on('click', function (e) {
+    e.preventDefault();
+
+    if(quiz.is(':animated')) {
+      return false;
+    }
+    choose();
+    questionCounter--;
+    displayNext();
+  });
+  // handler for start over
+  $('#start').on('click', function (e) {
+    e.preventDefault();
+
+    if(quiz.is(':animated')) {
+      return false;
+    }
+    questionCounter = 0;
+    selections = [];
+    displayNext();
+    $('#start').hide();
+  });
+
+  //hover over buttons
+  $('.button').on('mouseenter', function () {
+    $(this).addClass('active');
+  });
+  $('.button').on('mouseleave', function () {
+    $(this).removeClass('active');
+  });
+  // creates and returns div containing questions
+  function createQuestionElement(index){
+
+    var questionElement = $('<div>', {
+      id: 'question'
+    });
+
+    var header = $('<h2>Question' + (index + 1) + ':</h2>');
+    questionElement.append(header);
+
+    var question = $('<p>').append(questions[index].question);
+    questionElement.append(question);
+
+    var radioButtons = createRadios(index);
+    questionElement.append(radioButtons);
+
+    return questionElement;
+  }
+  //list of answers
+  function createRadios(index) {
+    var radioList = $('<ul>');
+    var item;
+    var input = '';
+    for (var i = 0; i < questions[index].choices.length; i++) {
+      item = $('<li>');
+      input = '<input type= "radio" name= "answer" value=' + i +'/>';
+      input +=
+      questions[index].choices[i];
+      item.append(input);
+      radioList.append(item);
+    }
+    return radioList;
+  }
+
+
+  //user selection is read and pushes to array
+  function choose() {
+    selections[questionCounter] = $('input[name="answer"]:checked').val();
+  }
+
+  //next question
+  function displayNext() {
+    quiz.fadeOut(function(){
+      $('#question').remove();
+
+      if(questionCounter < questions.length){
+        var nextQuestion = createQuestionElement(questionCounter);
+        quiz.append(nextQuestion).fadeIn();
+        if (!(isNaN(selections[questionCounter]))) {
+
+          $('input[value='+selections[questionCounter]+']').prop('checked', true);
+        }
+        // control prev button display
+        if(questionCounter === 1){
+          $('#previous').show();
+        } else if(questionCounter === 0){
+
+          $('#previous').hide();
+          $('#next').show();
+        } else{
+          var scoreElem = displayScore();
+          quiz.append(scoreElem).fadeIn();
+          $('#next').hide();
+          $('#previous').hide();
+          $('#start').show();
+        }
+      }
+
+    });
+  }
+  // Computes score and returns a paragraph element to be displayed
+  function displayScore() {
+    var score = $('<p>',{id: 'question'});
+
+    var numCorrect = 0;
+    for (var i = 0; i < selections.length; i++) {
+      if (selections[i] === questions[i].correctAnswer) {
+        numCorrect++;
+      }
+    }
+
+    score.append('You got ' + numCorrect + ' questions out of ' +
+    questions.length + ' right!!!');
+    return score;
+  }
+})();
