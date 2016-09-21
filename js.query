@@ -34,7 +34,7 @@ console.log("hi");
   //next handler
   $('#next').on('click', function(e){
     e.preventDefault();
-//suspending click listener during fade
+    //suspending click listener during fade
     if(quiz.is(':animated')) {
       return false;
     }
@@ -47,7 +47,7 @@ console.log("hi");
       questionCounter++;
       displayNext();
     }
-console.log(questionCounter)
+    console.log(questionCounter)
   });
   // handler for previous
   $('#previous').on('click', function (e) {
@@ -141,14 +141,12 @@ console.log(questionCounter)
           $('#next').show();
         }
       } else{
-          var scoreElem = displayScore();
-          quiz.append(scoreElem).fadeIn();
-          $('#next').hide();
-          $('#previous').hide();
-          $('#start').show();
-        }
-
-
+        var scoreElem = displayScore();
+        quiz.append(scoreElem).fadeIn();
+        $('#next').hide();
+        $('#previous').hide();
+        $('#start').show();
+      }
     });
   }
   // Computes score and returns a paragraph element to be displayed
@@ -160,9 +158,10 @@ console.log(questionCounter)
 
     var numCorrect = 0;
     for (var i = 0; i < selections.length; i++) {
-      if (selections[i] === questions[i].correctAnswer) {
+      if (selections[i] == questions[i].correctAnswer) {
         numCorrect++;
       }
+      console.log("finalScore", numCorrect);
     }
 
     score.append('You got ' + numCorrect + ' questions out of ' +
