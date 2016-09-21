@@ -28,17 +28,18 @@ console.log("hi");
   var questionCounter = 0;
   var selections = [];
   var quiz = $('#sportsQuiz');
-  //display 1st ?
+  //display 1st question
   displayNext();
 
   //next handler
   $('#next').on('click', function(e){
     e.preventDefault();
-//suspending click listener during fade 
+//suspending click listener during fade
     if(quiz.is(':animated')) {
       return false;
     }
     choose();
+    console.log(selections)
     //must have user selection
     if (isNaN(selections[questionCounter])) {
       alert('Please select Answer');
@@ -104,7 +105,7 @@ console.log("hi");
     var input = '';
     for (var i = 0; i < questions[index].choices.length; i++) {
       item = $('<li>');
-      input = '<input type= "radio" name= "answer" value=' + i +'/>';
+      input = '<input type= "radio" name= "answer" value="' + i +'"/>';
       input +=
       questions[index].choices[i];
       item.append(input);
