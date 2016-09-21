@@ -47,7 +47,7 @@ console.log("hi");
       questionCounter++;
       displayNext();
     }
-
+console.log(questionCounter)
   });
   // handler for previous
   $('#previous').on('click', function (e) {
@@ -133,7 +133,7 @@ console.log("hi");
           $('input[value='+selections[questionCounter]+']').prop('checked', true);
         }
         // control prev button display
-        if(questionCounter === 1){
+        if(questionCounter === 1 || 2 || 3){
           $('#previous').show();
         } else if(questionCounter === 0){
 
