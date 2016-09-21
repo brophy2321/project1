@@ -6,23 +6,23 @@ console.log("hi");
   var questions = [{
     question: "Which team has won the most Superbowls?",
     choices: ["Pittsburgh Steelers", "Green Bay Packers", "Cleveland Browns", "Dallas Cowboys" ],
-    correctAnswer: "Pittsburgh Steelers"
+    correctAnswer: 0
   }, {
     question: "Which hockey player is the all time points leader in the NHL?",
     choices: ["Wayne Gretzky", "Charlie Conway", "Mario Lemieux", "Georges Laraque"],
-    correctAnswer: "Wayne Gretzky"
+    correctAnswer: 0
   }, {
     question: "What baseball player holds the all time home run record?",
     choices: ["Babe Ruth", "Barry Bonds", "Ichiro Suzuki", "Jose Canseco"],
-    correctAnswer: "Barry Bonds"
+    correctAnswer: 1
   }, {
     question: "What NBA player holds the record for most three pointers in a season?",
     choices: ["Reggie Miller", "Jesus Shuttlesworth", "Steph Curry", "Michael Jordan"],
-    correctAnswer: "Steph Curry"
+    correctAnswer: 2
   }, {
     question: "Which male boxer holds the record for longest heavyweight title reign?",
     choices: ["Apollo Creed", "Mike Tyson", "Muhammad Ali", "Joe Louis"],
-    correctAnswer: "Joe Louis"
+    correctAnswer: 3
   }];
   //tracking question number, array of users choices,
   var questionCounter = 0;
@@ -133,24 +133,28 @@ console.log(questionCounter)
           $('input[value='+selections[questionCounter]+']').prop('checked', true);
         }
         // control prev button display
-        if(questionCounter === 1 || 2 || 3){
+        if(questionCounter === 1){
           $('#previous').show();
         } else if(questionCounter === 0){
 
           $('#previous').hide();
           $('#next').show();
-        } else{
+        }
+      } else{
           var scoreElem = displayScore();
           quiz.append(scoreElem).fadeIn();
           $('#next').hide();
           $('#previous').hide();
           $('#start').show();
         }
-      }
+
 
     });
   }
   // Computes score and returns a paragraph element to be displayed
+
+
+
   function displayScore() {
     var score = $('<p>',{id: 'question'});
 
